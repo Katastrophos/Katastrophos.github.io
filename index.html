@@ -1,3 +1,33 @@
-Hello World
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MARIX</title>
+</head>
+<body style="margin: 0; padding: 0;">
+    <canvas id="m" style="width: 100%; height: 100%;"></canvas>
+    <script>
+        const a = window.screen;
+        const w = (m.width = a.width);
+        const h = (m.height = a.height);
+        const abc = m.getContext("2d");
 
-KATASTROPHOS!
+        const p = Array(Math.floor(w / 10) + 1).fill(0);
+
+        const random = (items) => items[Math.floor(Math.random() * items.length)];
+
+        const hex = "PONOMAREV+79950918929".split("");
+
+        setInterval(() => {
+        abc.fillStyle = "rgba(0,0,0,.05)";
+        abc.fillRect(0, 0, w, h);
+        abc.fillStyle = "#0f0";
+        p.map((v, i) => {
+        abc.fillText(random(hex), i * 10, v);
+        p[i] = v >= h || v > 50 + 10000 * Math.random() ? 0 : v + 10;
+        });
+        }, 1000/20);
+    </script>
+</body>
+</html>
